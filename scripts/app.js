@@ -1,8 +1,8 @@
-var http = require('http');
-
-// Require Date-Time Module
-var dt = require('./modules/date-time.js');
-
+// var http = require('http');
+//
+// // Require Date-Time Module
+// var dt = require('./modules/date-time.js');
+//
 // // Use Custom Module //
 // http.createServer(function(req, res) {
 //   // content type
@@ -15,9 +15,12 @@ var dt = require('./modules/date-time.js');
 // }).listen(8080);
 
 
+///////////////////
 
 
 // // Read Query String //
+//var http = require('http');
+//
 // http.createServer(function(req, res) {
 //   // content type
 //   res.writeHead(200, {'Content-Type': 'text/html'});
@@ -29,15 +32,21 @@ var dt = require('./modules/date-time.js');
 // }).listen(8080);
 
 
+//////////////////////
 
 
 // Splitting the Query String
+var http = require('http');
+var url = require('url');
+
 http.createServer(function(req, res) {
   // content type
   res.writeHead(200, {'Content-Type': 'text/html'});
-  // read/write the query-string
-  res.write(req.url);
+  // parse the query
+  var q = url.parse(req.url, true).query;
+  // split the query
+  var txt = q.year + " " + q.month;
   // end response
-  res.end();
+  res.end(txt);
   // listen on port 8080
 }).listen(8080);

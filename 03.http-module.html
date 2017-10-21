@@ -2,12 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Introduction</title>
+    <title>HTTP Module</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="prism/prism.css">
     <script src="prism/prism.js"></script>
   </head>
-  <body>
+  <body class="w3-container">
 
     <h1>HTTP Module</h1>
 
@@ -21,6 +22,8 @@
       var http = require('http');
     </code></pre>
 
+    <hr>
+
     <h2>Node.js Web Server</h2>
 
     <p>We can use the HTTP module to create an HTTP server that listens to server ports and provides a response back to the client.</p>
@@ -32,41 +35,56 @@
 
       // create the server object
       http.createServer(function(req, res) {
-        res.write('Hello There!'); // response to client
-        res.end(); // end the response
-      }).listen(8080); // port to listen on
+        // response to client
+        res.write('Hello There!');
+        // end the response
+        res.end();
+        // port to listen on
+      }).listen(8080);
+
+      // result: Hello There!
     </code></pre>
 
     <p>The function passed into the <b>http.createServer()</b> method is executed when anyone tries to access the computer on port 8080.</p>
+
+    <hr>
 
     <h2>HTTP Headers</h2>
 
     <p>To display the response from the HTTP server as HTML, we can include an HTTP header with the relevant content type:</p>
 
     <pre><code class="language-javascript">
+      var http = require('http');
+
+      // create server object
       http.createServer(function(req, res) {
-        // content type
+        // define content type
         res.writeHead(200, {'Content-Type': 'text/html'});
-        // use custom module
-        res.write("The current date and time are: " + dt.myDateTime());
+        // response to client
+        res.write('Hello There!');
         // end response
         res.end();
         // listen on port 8080
       }).listen(8080);
+
+      // visit: localhost:8080
+      // result: Hello There!
     </code></pre>
 
     <p>The first argument in the <b>res.writeHead()</b> method is the status code 200 (all okay), and the second argument is an object containing the response headers.</p>
+
+    <hr>
 
     <h2>Reading the Query String</h2>
 
     <p>The function passed into the <b>http.createServer()</b> has a <b>req</b> argument that represents the request from the client as an object (http.IncomingMessage object).</p>
 
-    <p>This object has a property called "url" that holds the part of the url that comes after the domain name:</p>
+    <p>This object has a property called <b>url</b> that holds the part of the url that comes after the domain name:</p>
 
     <pre><code class="language-javascript">
-      // Read Query String //
+      // create server object
       http.createServer(function(req, res) {
-        // content type
+        // define content type
         res.writeHead(200, {'Content-Type': 'text/html'});
         // read/write the query-string
         res.write(req.url);
@@ -74,14 +92,36 @@
         res.end();
         // listen on port 8080
       }).listen(8080);
+
+      // visit: localhost:8080/summer
+      // result: /summer
     </code></pre>
+
+    <hr>
 
     <h2>Splitting the Query String</h2>
 
     <p>Node.js includes built-in modules that can split the query string into readable parts:</p>
 
     <pre><code class="language-javascript">
-      
+      // require modules
+      var http = require('http');
+      var url = require('url');
+
+      http.createServer(function(req, res) {
+        // define content type
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        // parse the query
+        var q = url.parse(req.url, true).query;
+        // split the query
+        var txt = q.year + " " + q.month;
+        // end response
+        res.end(txt);
+        // listen on port 8080
+      }).listen(8080);
+
+      // visit: localhost:8080/?year=2017&month=October
+      // result: 2017 October
     </code></pre>
 
 
