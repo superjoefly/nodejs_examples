@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="prism/prism.css">
+    <script src="prism/prism.js"></script>
+  </head>
+  <body>
+
+    <h1>HTTP Module</h1>
+
+    <h2>The Built-in HTTP Module</h2>
+
+    <p>Node.js has a built-in module called HTTP, which allows Node.js to transfer data over the HTTP protocol.</p>
+
+    <p>We can include the HTTP module using the <b>require()</b> method:</p>
+
+    <pre><code class="language-javascript">
+      var http = require('http');
+    </code></pre>
+
+    <h2>Node.js Web Server</h2>
+
+    <p>We can use the HTTP module to create an HTTP server that listens to server ports and provides a response back to the client.</p>
+
+    <p>We can create an HTTP server using the <b>createServer()</b> method:</p>
+
+    <pre><code class="language-javascript">
+      var http = require('http');
+
+      // create the server object
+      http.createServer(function(req, res) {
+        res.write('Hello There!'); // response to client
+        res.end(); // end the response
+      }).listen(8080); // port to listen on
+    </code></pre>
+
+    <p>The function passed into the <b>http.createServer()</b> method is executed when anyone tries to access the computer on port 8080.</p>
+
+    <h2>HTTP Headers</h2>
+
+    <p>To display the response from the HTTP server as HTML, we can include an HTTP header with the relevant content type:</p>
+
+    <pre><code class="language-javascript">
+      http.createServer(function(req, res) {
+        // content type
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        // use custom module
+        res.write("The current date and time are: " + dt.myDateTime());
+        // end response
+        res.end();
+        // listen on port 8080
+      }).listen(8080);
+    </code></pre>
+
+    <p>The first argument in the <b>res.writeHead()</b> method is the status code 200 (all okay), and the second argument is an object containing the response headers.</p>
+
+    <h2>Reading the Query String</h2>
+
+    <p>The function passed into the <b>http.createServer()</b> has a <b>req</b> argument that represents the request from the client as an object (http.IncomingMessage object).</p>
+
+    <p>This object has a property called "url" that holds the part of the url that comes after the domain name:</p>
+
+    <pre><code class="language-javascript">
+      // Read Query String //
+      http.createServer(function(req, res) {
+        // content type
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        // read/write the query-string
+        res.write(req.url);
+        // end response
+        res.end();
+        // listen on port 8080
+      }).listen(8080);
+    </code></pre>
+
+    <h2>Splitting the Query String</h2>
+
+    <p>Node.js includes built-in modules that can split the query string into readable parts:</p>
+
+    <pre><code class="language-javascript">
+      
+    </code></pre>
+
+
+  <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

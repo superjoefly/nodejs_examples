@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Modules</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="prism/prism.css">
+    <script src="prism/prism.js"></script>
+  </head>
+  <body>
+
+  <h1>Modules</h1>
+
+  <p>Modules are like JavaScript libraries that include a set of functions we can include in our application.</p>
+
+  <p>Node.js has a set of built-in modules that we can use without any further installation.</p>
+
+  <p>To include a module, we can use the <b>require()</b> function with the name of the module:</p>
+
+  <pre><code class="language-javascript">
+    var http = require('http');
+  </code></pre>
+
+  <p>Now our application has access to the HTTP module, and is available for server creation:</p>
+
+  <pre><code class="language-javascript">
+    http.createServer(function (req, res) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end('Hello World!');
+    }).listen(8080);
+  </code></pre>
+
+  <h2>Creating Modules</h2>
+
+  <p>We can create our own modules and require them in our applications. Following is an example of a module that returns the current date and time:</p>
+
+  <pre><code class="language-javascript">
+    exports.myDateTime = function() {
+      return Date();
+    }
+  </code></pre>
+
+  <p>The <b>exports</b> keyword makes properties and methods available outside the module file.</p>
+
+  <h2>Example:</h2>
+
+  <p>Create a file called <b>date-time.js</b> and insert the following code:</p>
+
+  <pre><code class="language-javascript">
+    exports.myDateTime = function() {
+      return Date();
+    };
+  </code></pre>
+
+  <p>Require the date-time modules in our app.js file using the following:</p>
+
+  <pre><code class="language-javascript">
+    // Require Date-Time Module
+    var dt = require('./modules/date-time.js');
+  </code></pre>
+
+  <p>Now we can print out the result of the <b>date-time</b> module in our browser using the following in our app.js file:</p>
+
+  <pre><code class="language-javascript">
+    http.createServer(function(req, res) {
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write("The current date and time are: " + dt.myDateTime());
+    }).listen(8080);
+  </code></pre>
+
+
+
+  <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

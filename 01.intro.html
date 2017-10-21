@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="prism/prism.css">
+    <script src="prism/prism.js"></script>
+  </head>
+  <body>
+
+    <h1>Introduction</h1>
+
+    <h2>What is Node.js?</h2>
+
+    <ul>
+      <li>Open source server framework</li>
+      <li>Free to download and use</li>
+      <li>Runs on various platforms</li>
+      <li>Uses JavaScript on the server</li>
+    </ul>
+
+    <h2>Why Use Node.js</h2>
+
+    <p>Node.js uses asynchronous programming.</p>
+
+    <p>Node.js runs single-threaded, non-blocking, asynchronous programming, which is very memory efficient.</p>
+
+    <hr>
+
+    <h2>What Can Node.js Do?</h2>
+
+    <ul>
+      <li>Generate dynamic page content</li>
+      <li>Create, open, read, write, delete, and close files</li>
+      <li>Collect form data</li>
+      <li>Add, delete and modify data in a database</li>
+    </ul>
+
+    <hr>
+
+    <h2>What are Node.js Files?</h2>
+
+    <ul>
+      <li>Contain tasks that will be executed on certain events</li>
+      <li>A typical event is someone trying to access a port on the server</li>
+      <li>Must be initiated on the server before having any effect</li>
+      <li>Have a ".js" extension</li>
+    </ul>
+
+    <h2>Example:</h2>
+
+    <p>The following is an example of using Node.js to display the text "Hello World!" in the browser when accessing port http://localhost:8080</p>
+
+    <p>Create a file called app.js and insert the following code:</p>
+
+    <pre><code class="language-javascript">
+      var http = require('http');
+
+      http.createServer(function (req, res) {
+          res.writeHead(200, {'Content-Type': 'text/html'});
+          res.end('Hello World!');
+      }).listen(8080);
+    </code></pre>
+
+    <p>Using the command line (terminal) navigate to the folder that contains the app.js file just created.</p>
+
+    <p>Initiate the node file by running the following command:</p>
+
+    <pre><code class="language-javascript">
+      node app.js
+    </code></pre>
+
+    <p>Navigate to http://localhost:8080 in a browser to see the result.</p>
+
+  </body>
+</html>
