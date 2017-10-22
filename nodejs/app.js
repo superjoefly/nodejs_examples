@@ -148,11 +148,60 @@
 
 // Renaming Files
 
-// Rename Existing File using the rename() method
+// // Rename Existing File using the rename() method
+//
+// var fs = require('fs');
+//
+// fs.rename('../demos/fileToRename.txt', '../demos/renamedFile.txt', function(err) {
+//   if (err) throw err;
+//   console.log('File Renamed!');
+// });
 
-var fs = require('fs');
 
-fs.rename('../demos/fileToRename.txt', '../demos/renamedFile.txt', function(err) {
-  if (err) throw err;
-  console.log('File Renamed!');
-});
+////////////////////
+
+// URL Module
+
+// // Parsing Address
+// var url = require('url');
+//
+// var addr = 'http://localhost:8080/default.htm?year=2017&month=october';
+//
+// var q = url.parse(addr, true);
+//
+// console.log(q.host); // return the host
+// console.log(q.pathname); // return the pathname
+// console.log(q.search); // return the search query
+//
+// var qdata = q.query; // return search query as object
+// console.log(qdata.month); // return the month
+
+
+//////////////////
+
+// Combining File System with Parse
+
+// Server a request file
+
+// // Require the modules
+// var http = require('http');
+// var url = require('url');
+// var fs = require('fs');
+//
+// // Create the server
+// http.createServer(function(req, res) {
+//   // Parse the query
+//   var q = url.parse(req.url, true);
+//   // Define the file
+//   var filename = "../demos/" + q.pathname;
+//   // Read the file
+//   fs.readFile(filename, function(err, data) {
+//     if(err) {
+//       res.writeHead(404, {'Content-Type': 'text/html'});
+//       return res.end("404 Not Found");
+//     }
+//     res.writeHead(200, {'Content-Type': 'text/html'});
+//     res.write(data);
+//     return res.end();
+//   });
+// }).listen(8080);
