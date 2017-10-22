@@ -146,7 +146,7 @@
 
 ///////////////////
 
-// Renaming Files
+// Renaming Files //
 
 // // Rename Existing File using the rename() method
 //
@@ -160,7 +160,7 @@
 
 ////////////////////
 
-// URL Module
+// URL Module //
 
 // // Parsing Address
 // var url = require('url');
@@ -179,9 +179,9 @@
 
 //////////////////
 
-// Combining File System with Parse
+// Combining File System with Parse //
 
-// Server a request file
+// Server a requested file
 
 // // Require the modules
 // var http = require('http');
@@ -210,7 +210,7 @@
 //////////////////
 
 
-// Node Package Manager
+// Node Package Manager //
 
 // // Require Modules
 // var http = require('http');
@@ -223,3 +223,74 @@
 //   res.write(uc("Hello There!"));
 //   res.end();
 // }).listen(8080);
+
+
+////////////////////
+
+
+// Events //
+
+// var fs = require('fs');
+// var rs = fs.createReadStream('../demos/demoFile1.html');
+// // Trigger event when file is opened
+// rs.on('open', function() {
+//   console.log('The File is Open!');
+// });
+
+
+
+// Emitting and Handling Events //
+
+// // Require events module
+// var events = require('events');
+//
+// // Create new event-emitter object
+// var eventEmitter = new events.EventEmitter();
+//
+// // Create event-handler
+// var eventHandler = function() {
+//   console.log('Beep, Beep!!!');
+// };
+//
+// // Assign event-handler to event
+// eventEmitter.on('car-beep', eventHandler);
+//
+// // Fire the event
+// eventEmitter.emit('car-beep');
+
+
+
+/////////////////
+
+// Uploading Files //
+
+// npm install formidable
+var http = require('http');
+var fs = require('fs');
+var formidable = require('formidable');
+
+http.createServer(function(req, res) {
+
+  if (req.url == '/fileupload') {
+    // Parse the uploaded file
+    var form = new formidable.IncomingForm();
+    form.parse(req, function(err, fields, files) {
+      // Save file to new location
+      var oldpath = files.filetoupload.path;
+      var newpath = '../demos/' + files.filetoupload.name;
+      fs.rename(oldpath, newpath, function(err) {
+        if (err) throw err;
+        res.write('File Uploaded!');
+        res.end();
+      });
+    });
+  } else {
+    // Create and HTML Form
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+    res.write('<input type="file" name="filetoupload"><br>');
+    res.write('<input type="submit">');
+    res.write('</form>');
+    return res.end();
+  }
+}).listen(8080);

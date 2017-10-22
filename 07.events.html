@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Events</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="prism/prism.css">
+    <script src="prism/prism.js"></script>
+  </head>
+  <body class="w3-container">
+
+    <h1>Events</h1>
+
+    <h2>Node.js Events</h2>
+
+    <p>Every action on a computer is considered an event. Objects in Node.js can fire events.</p>
+
+    <h3>Example:</h3>
+
+    <p>The readStream object fires events when opening and closing files:</p>
+
+    <pre><code class="language-javascript">
+      var fs = require('fs');
+      var rs = fs.createReadStream('../demos/demoFile1.html');
+      // Trigger event when file is opened
+      rs.on('open', function() {
+        console.log('The File is Open!');
+      });
+    </code></pre>
+
+    <hr>
+
+    <h2>Events Module</h2>
+
+    <p>We can use the built-in "Events" module to create, fire and listen for our own events.</p>
+
+    <p>We can include the built-in Events module using the <b>require()</b> method. All event properties and methods are an instance of the EventEmitter object. In order to access these properties and methods, we can create an EventEmitter object:</p>
+
+    <pre><code class="language-javascript">
+      var events = require('events');
+      var eventEmitter = new events.EventEmitter();
+    </code></pre>
+
+    <hr>
+
+    <h2>EventEmitter Object</h2>
+
+    <p>We can assign event handlers to our own events with the EventEmitter object.</p>
+
+    <p>To fire the event, we can use the <b>emit()</b> method:</p>
+
+    <pre><code class="language-javascript">
+      // Require events module
+      var events = require('events');
+
+      // Create new event-emitter object
+      var eventEmitter = new events.EventEmitter();
+
+      // Create event-handler
+      var eventHandler = function() {
+        console.log('Beep, Beep!!!');
+      };
+
+      // Assign event-handler to event
+      eventEmitter.on('car-beep', eventHandler);
+
+      // Fire the event
+      eventEmitter.emit('car-beep');
+    </code></pre>
+
+
+  <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>
