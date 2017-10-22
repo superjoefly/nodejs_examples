@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>NPM</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="prism/prism.css">
+    <script src="prism/prism.js"></script>
+  </head>
+  <body class="w3-container">
+
+    <h1>NPM - Node Package Manager</h1>
+
+    <h2>What is NPM?</h2>
+
+    <p>NPM is a package manager for Node.js packages and modules.</p>
+
+    <p>Thousands of free packages, hosted by <a href="www.npmjs.com">npmjs.com</a>, are available to download and use for free.</p>
+
+    <p>NPM is automatically installed onto your computer when you install Node.js.</p>
+
+    <hr>
+
+    <h2>What's a Package?</h2>
+
+    <p>A npm package contains all the files needed to use a specified module.</p>
+
+    <p>Modules are JavaScript libraries we can include in our projects.</p>
+
+    <hr>
+
+    <h2>Downloading Packages</h2>
+
+    <p>To download a package, open the command line interface and tell NPM to download/install whatever package it is that you want use.</p>
+
+    <h3>Example:</h3>
+
+    <pre><code class="language-javascript">
+      npm install upper-case;
+    </code></pre>
+
+    <p>When downloading our first package, NPM will create a folder called "node_modules", where downloaded packages will be placed.</p>
+
+    <h2>Using NPM Packages</h2>
+
+    <p>Once the package has been installed, we can <b>require</b> it just like we would require any other module:</p>
+
+    <pre><code class="language-javascript">
+      // app.js
+      var uc = require('upper-case');
+    </code></pre>
+
+    <p>Then we can use our app.js file to create a server and output text in upper-case:</p>
+
+    <pre><code class="language-javascript">
+      // Require Modules
+      var http = require('http');
+      var uc = require('upper-case');
+
+      // Create Server
+      http.createServer(function(req, res) {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        // Convert to Upper-Case
+        res.write(uc("Hello There!"));
+        res.end();
+      }).listen(8080);
+
+      // Result: HELLO THERE!
+    </code></pre>
+
+  <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

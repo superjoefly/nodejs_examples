@@ -205,3 +205,21 @@
 //     return res.end();
 //   });
 // }).listen(8080);
+
+
+//////////////////
+
+
+// Node Package Manager
+
+// // Require Modules
+// var http = require('http');
+// var uc = require('upper-case');
+//
+// // Create Server
+// http.createServer(function(req, res) {
+//   res.writeHead(200, {'Content-Type': 'text/html'});
+//   // Convert to Upper-Case
+//   res.write(uc("Hello There!"));
+//   res.end();
+// }).listen(8080);
