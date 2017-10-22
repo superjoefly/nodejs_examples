@@ -262,35 +262,97 @@
 
 /////////////////
 
-// Uploading Files //
+// // Uploading Files //
+//
+// // npm install formidable
+// var http = require('http');
+// var fs = require('fs');
+// var formidable = require('formidable');
+//
+// http.createServer(function(req, res) {
+//
+//   if (req.url == '/fileupload') {
+//     // Parse the uploaded file
+//     var form = new formidable.IncomingForm();
+//     form.parse(req, function(err, fields, files) {
+//       // Save file to new location
+//       var oldpath = files.filetoupload.path;
+//       var newpath = '../demos/' + files.filetoupload.name;
+//       fs.rename(oldpath, newpath, function(err) {
+//         if (err) throw err;
+//         res.write('File Uploaded!');
+//         res.end();
+//       });
+//     });
+//   } else {
+//     // Create and HTML Form
+//     res.writeHead(200, {'Content-Type': 'text/html'});
+//     res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+//     res.write('<input type="file" name="filetoupload"><br>');
+//     res.write('<input type="submit">');
+//     res.write('</form>');
+//     return res.end();
+//   }
+// }).listen(8080);
 
-// npm install formidable
-var http = require('http');
-var fs = require('fs');
-var formidable = require('formidable');
 
-http.createServer(function(req, res) {
+///////////////////
 
-  if (req.url == '/fileupload') {
-    // Parse the uploaded file
-    var form = new formidable.IncomingForm();
-    form.parse(req, function(err, fields, files) {
-      // Save file to new location
-      var oldpath = files.filetoupload.path;
-      var newpath = '../demos/' + files.filetoupload.name;
-      fs.rename(oldpath, newpath, function(err) {
-        if (err) throw err;
-        res.write('File Uploaded!');
-        res.end();
-      });
-    });
-  } else {
-    // Create and HTML Form
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-    res.write('<input type="file" name="filetoupload"><br>');
-    res.write('<input type="submit">');
-    res.write('</form>');
-    return res.end();
-  }
-}).listen(8080);
+// Sending Email //
+
+// var nodemailer = require('nodemailer');
+//
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'myemail@gmail.com',
+//     pass: 'mypassword'
+//   }
+// });
+//
+// var mailOptions = {
+//   from: 'myemail@gmail.com',
+//   to: 'myfriend@yahoo.com, anotherfriend@yahoo.com',
+//   subject: 'Testing NodeMailer Module',
+//   text: 'It worked!'
+// };
+//
+// transporter.sendMail(mailOptions, function(error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
+
+
+// Send HTML Formatted Email
+// Same as above except with 'html' instead of 'text'
+
+// var nodemailer = require('nodemailer');
+//
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'myemail@gmail.com',
+//     pass: 'mypassword'
+//   }
+// });
+//
+// var mailOptions = {
+//   from: 'myemail@gmail.com',
+//   to: 'myfriend@gmail.com',
+//   subject: 'Testing HTML Formatting',
+//   html: `
+//     <h1>Hey there!</h1>
+//     <p style="color: green">It Worked!</p>
+//   `
+// };
+//
+// transporter.sendMail(mailOptions, function(error, info) {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log('Email sent: ' + info.response);
+//   }
+// });

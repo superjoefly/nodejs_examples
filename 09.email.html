@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title></title>
+    <title>Sending Email</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,9 +13,92 @@
   </head>
   <body class="w3-container">
 
-    <h1></h1>
+    <h1>Sending Email</h1>
 
-    <h2></h2>
+    <h2>Nodemailer Module</h2>
+
+    <p>We can use the Nodemailer module to send emails from our computer.</p>
+
+    <p>We can install the Nodemailer module using NPM:</p>
+
+    <pre><code class="language-javascript">
+      npm install nodemailer
+    </code></pre>
+
+    <p>Once installed, we can include the module in our application:</p>
+
+    <pre><code class="language-javascript">
+      var nodemailer = require('nodemailer');
+    </code></pre>
+
+    <hr>
+
+    <h2>Sending Email</h2>
+
+    <p>Once included in our application, we can send emails from our server. To do this, we will use the username and password from our selected email provider. For this example, we will use a gmail accout:</p>
+
+    <pre><code class="language-javascript">
+      var nodemailer = require('nodemailer');
+
+      // Example using gmail
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'myemail@gmail.com',
+          pass: 'mypassword'
+        }
+      });
+
+      var mailOptions = {
+        from: 'myemail@gmail.com',
+        to: 'myfriend@yahoo.com',
+        subject: 'Testing NodeMailer Module',
+        text: 'It worked!'
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    </code></pre>
+
+    <hr>
+
+    <h2>Multiple Receivers</h2>
+
+    <p>We can send email to more than one user by adding the to the "to" property of the mailOptions object, separated by a comma:</p>
+
+    <pre><code class="language-javascript">
+      <!-- Multiple Recipients -->
+
+      var mailOptions = {
+        from: 'myemail@gmail.com',
+        to: 'myfriend@yahoo.com, anotherfriend@yahoo.com',
+        subject: 'Testing NodeMailer Module',
+        text: 'It worked!'
+      }
+    </code></pre>
+
+    <hr>
+
+    <h2>Sending HTML</h2>
+
+    <p>We can send HTML formatted text in our email using the "html" property instead of the "text" property:</p>
+
+    <pre><code class="language-javascript">
+      var mailOptions = {<br />
+        from: 'myemail@gmail.com',<br />
+        to: 'myfriend@gmail.com',<br />
+        subject: 'Testing HTML Formatting',<br />
+        html: `<br />
+          &lt;h1&gt;Hey there!&lt;/h1&gt;<br />
+          &lt;p style="color: green"&gt;It Worked!&lt;/p&gt;<br />
+        `<br />
+      };
+    </code></pre>
 
 
   <script src="http://localhost:35729/livereload.js"></script>
