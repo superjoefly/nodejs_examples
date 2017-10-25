@@ -16,6 +16,10 @@ h2, h3 {
   color: teal;
 }
 
+p {
+  color: #545454;
+}
+
 ul {
   list-style-type: none;
   display: inline-block;
