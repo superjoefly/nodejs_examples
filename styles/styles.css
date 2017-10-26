@@ -43,7 +43,7 @@ ul li {
   }
   ul.links li {
     display: inline;
-    margin-left: 25px;
+    margin: 0 10px 0 10px;
   }
 }
 
