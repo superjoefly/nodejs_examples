@@ -1,5 +1,6 @@
 html {
   background-color: #fffaea;
+  margin-bottom: 25px;
 }
 
 body {
@@ -36,6 +37,16 @@ ul li {
   padding: 5px;
 }
 
+@media all and (min-width: 1300px) {
+  ul.links {
+    margin-top: 200px;
+  }
+  ul.links li {
+    display: inline;
+    margin-left: 25px;
+  }
+}
+
 ul a {
   text-decoration: none;
   color: teal;
@@ -64,6 +75,10 @@ ul a:hover {
   content: "";
   clear: both;
   display: table;
+}
+
+.w3-button {
+  margin-top: 25px;
 }
 
 /*Navigation*/
